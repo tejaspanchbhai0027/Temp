@@ -9,48 +9,63 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             background: radial-gradient(circle at center, #0a0a2a 0%, #1a1a4a 50%, #2d2d7a 100%);
             font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            overflow-x: hidden;
             perspective: 1000px;
-            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff3366" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+            touch-action: manipulation;
         }
 
-        /* 3D Floating Heart */
+        /* 3D Floating Heart - Smaller on mobile */
         .heart-3d {
             position: absolute;
-            width: 200px;
-            height: 200px;
+            width: 100px;
+            height: 100px;
             background: radial-gradient(circle at center, #ff3366 0%, #cc0066 100%);
             transform-style: preserve-3d;
             animation: float3d 8s ease-in-out infinite, beat 1.5s ease infinite;
-            box-shadow: 0 0 50px #ff0066, 0 0 100px #ff0066;
+            box-shadow: 0 0 30px #ff0066;
             border-radius: 50%;
-            filter: drop-shadow(0 0 20px rgba(255, 0, 102, 0.7));
+            filter: drop-shadow(0 0 10px rgba(255, 0, 102, 0.7));
             z-index: 1;
         }
 
-        /* Love Letter */
+        /* Love Letter - Responsive sizing */
         .love-letter {
             position: relative;
-            width: 80%;
+            width: 90%;
             max-width: 600px;
             background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,240,245,0.95) 100%);
-            padding: 40px;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
-                        0 0 0 10px #ffebee,
-                        0 0 0 15px #ffcdd2;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 
+                        0 0 0 5px #ffebee,
+                        0 0 0 10px #ffcdd2;
             transform-style: preserve-3d;
             animation: letterFloat 6s ease-in-out infinite;
             z-index: 10;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
+            margin: 20px 0;
+        }
+
+        @media (min-width: 768px) {
+            .heart-3d {
+                width: 200px;
+                height: 200px;
+                box-shadow: 0 0 50px #ff0066, 0 0 100px #ff0066;
+            }
+            .love-letter {
+                padding: 40px;
+                box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 
+                            0 0 0 10px #ffebee,
+                            0 0 0 15px #ffcdd2;
+            }
         }
 
         .love-letter::before {
@@ -59,85 +74,114 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 10px;
+            height: 8px;
             background: linear-gradient(90deg, #ff3366, #ff758c, #ff3366);
             animation: rainbow 3s linear infinite;
         }
 
         h1 {
             color: #ff3366;
-            font-size: 3.5rem;
+            font-size: 2.2rem;
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             font-family: 'Brush Script MT', cursive;
-            text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.8);
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
             animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 3.5rem;
+                text-shadow: 3px 3px 0px rgba(255, 255, 255, 0.8);
+            }
         }
 
         .message {
             color: #333;
-            font-size: 1.3rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
             position: relative;
-            padding-left: 20px;
-            border-left: 3px solid #ff3366;
+            padding-left: 15px;
+            border-left: 2px solid #ff3366;
         }
 
-        /* Interactive Rose Button */
+        @media (min-width: 768px) {
+            .message {
+                font-size: 1.3rem;
+                line-height: 1.8;
+                margin-bottom: 30px;
+                padding-left: 20px;
+                border-left: 3px solid #ff3366;
+            }
+        }
+
+        /* Interactive Rose Button - Mobile friendly */
         .rose-btn {
             background: linear-gradient(45deg, #ff3366, #ff758c);
             color: white;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
+            padding: 12px 25px;
+            font-size: 1rem;
             border-radius: 50px;
             cursor: pointer;
-            margin: 20px auto;
+            margin: 15px auto;
             display: block;
-            box-shadow: 0 10px 30px rgba(255, 51, 102, 0.5);
+            box-shadow: 0 5px 15px rgba(255, 51, 102, 0.5);
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             z-index: 1;
             font-weight: bold;
             letter-spacing: 1px;
+            width: 90%;
+            max-width: 300px;
         }
 
-        .rose-btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(255, 51, 102, 0.7);
+        @media (min-width: 768px) {
+            .rose-btn {
+                padding: 15px 40px;
+                font-size: 1.2rem;
+                margin: 20px auto;
+                box-shadow: 0 10px 30px rgba(255, 51, 102, 0.5);
+                width: auto;
+            }
+        }
+
+        .rose-btn:hover, .rose-btn:active {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(255, 51, 102, 0.7);
         }
 
         .rose-btn::after {
             content: '❤️';
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             opacity: 0;
             transition: all 0.4s ease;
         }
 
-        .rose-btn:hover::after {
-            top: -35px;
+        .rose-btn:hover::after, .rose-btn:active::after {
+            top: -25px;
             opacity: 1;
             animation: floatUp 2s ease-in-out infinite;
         }
 
-        /* Floating Petals */
+        /* Floating Petals - Fewer on mobile */
         .petal {
             position: absolute;
             background: radial-gradient(circle, #ffb3d9 0%, #ff66b3 100%);
             border-radius: 50% 0 50% 50%;
             opacity: 0.8;
-            filter: drop-shadow(0 0 5px rgba(255, 102, 179, 0.7));
+            filter: drop-shadow(0 0 3px rgba(255, 102, 179, 0.7));
             z-index: 0;
             animation: fall linear infinite;
         }
 
-        /* Firework Particles */
+        /* Firework Particles - Smaller on mobile */
         .particle {
             position: absolute;
             border-radius: 50%;
@@ -160,12 +204,19 @@
 
         @keyframes letterFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        @media (min-width: 768px) {
+            @keyframes letterFloat {
+                0%, 100% { transform: translateY(0) rotate(0deg); }
+                50% { transform: translateY(-20px) rotate(2deg); }
+            }
         }
 
         @keyframes glow {
-            0% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff3366, 0 0 40px #ff3366; }
-            100% { text-shadow: 0 0 20px #fff, 0 0 30px #ff758c, 0 0 40px #ff758c, 0 0 50px #ff758c; }
+            0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff3366, 0 0 20px #ff3366; }
+            100% { text-shadow: 0 0 10px #fff, 0 0 15px #ff758c, 0 0 20px #ff758c, 0 0 25px #ff758c; }
         }
 
         @keyframes rainbow {
@@ -175,14 +226,14 @@
 
         @keyframes floatUp {
             0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-15px); }
+            50% { transform: translateX(-50%) translateY(-10px); }
         }
 
         @keyframes fall {
             to { transform: translateY(100vh) rotate(360deg); }
         }
 
-        /* Floating Stars */
+        /* Floating Stars - Fewer on mobile */
         .star {
             position: absolute;
             background: white;
@@ -196,7 +247,7 @@
             50% { opacity: 0.8; transform: scale(1); }
         }
 
-        /* Hidden Surprise */
+        /* Hidden Surprise - Mobile optimized */
         .surprise {
             position: fixed;
             top: 0;
@@ -210,18 +261,29 @@
             z-index: 100;
             opacity: 0;
             pointer-events: none;
-            transition: opacity 1s ease;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .surprise-content {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            max-width: 80%;
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            max-width: 500px;
             text-align: center;
             position: relative;
-            transform: scale(0.5);
-            transition: transform 0.5s ease;
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        @media (min-width: 768px) {
+            .surprise-content {
+                padding: 40px;
+                border-radius: 20px;
+                transform: scale(0.5);
+            }
         }
 
         .surprise.active {
@@ -232,14 +294,36 @@
         .surprise.active .surprise-content {
             transform: scale(1);
         }
+
+        /* Mobile touch optimizations */
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* No cursor on mobile */
+        @media (hover: none) {
+            body {
+                cursor: default;
+            }
+            .rose-btn::after {
+                display: none;
+            }
+        }
+
+        /* Cursor for desktop */
+        @media (hover: hover) {
+            body {
+                cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23ff3366" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>'), auto;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- 3D Floating Heart -->
-    <div class="heart-3d" style="top: 30%; left: 20%;"></div>
-    <div class="heart-3d" style="top: 70%; left: 80%; animation-delay: 2s;"></div>
-    <div class="heart-3d" style="top: 20%; left: 70%; animation-delay: 4s;"></div>
-    <div class="heart-3d" style="top: 80%; left: 30%; animation-delay: 6s;"></div>
+    <!-- 3D Floating Heart - Positioned for mobile -->
+    <div class="heart-3d" style="top: 15%; left: 10%;"></div>
+    <div class="heart-3d" style="top: 85%; left: 90%; animation-delay: 2s;"></div>
+    <div class="heart-3d" style="top: 10%; left: 80%; animation-delay: 4s;"></div>
+    <div class="heart-3d" style="top: 90%; left: 20%; animation-delay: 6s;"></div>
 
     <!-- Love Letter -->
     <div class="love-letter">
@@ -265,25 +349,25 @@
     <!-- Hidden Surprise -->
     <div class="surprise" id="surprise">
         <div class="surprise-content">
-            <h1 style="color: #ff3366;">Will You Be Mine Forever?</h1>
-            <p style="font-size: 1.5rem; margin: 30px 0;">I promise to love you through every bug and every update life brings our way.</p>
-            <div style="display: flex; justify-content: center; gap: 20px;">
-                <button class="rose-btn" id="yesBtn" style="background: linear-gradient(45deg, #4CAF50, #8BC34A);">YES! ❤️</button>
-                <button class="rose-btn" id="noBtn" style="background: linear-gradient(45deg, #f44336, #FF9800);">No (Try Me)</button>
+            <h1 style="color: #ff3366; font-size: 1.8rem;">Will You Be Mine Forever?</h1>
+            <p style="font-size: 1.1rem; margin: 20px 0;">I promise to love you through every bug and every update life brings our way.</p>
+            <div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+                <button class="rose-btn" id="yesBtn" style="background: linear-gradient(45deg, #4CAF50, #8BC34A); width: 200px; max-width: 100%;">YES! ❤️</button>
+                <button class="rose-btn" id="noBtn" style="background: linear-gradient(45deg, #f44336, #FF9800); width: 200px; max-width: 100%;">No (Try Me)</button>
             </div>
         </div>
     </div>
 
     <script>
-        // Create floating petals
+        // Create floating petals - fewer on mobile
         function createPetals() {
-            const petalCount = 30;
+            const petalCount = window.innerWidth < 768 ? 15 : 30;
             for (let i = 0; i < petalCount; i++) {
                 const petal = document.createElement('div');
                 petal.classList.add('petal');
                 
                 // Random properties
-                const size = Math.random() * 20 + 10;
+                const size = Math.random() * (window.innerWidth < 768 ? 15 : 20) + 8;
                 petal.style.width = `${size}px`;
                 petal.style.height = `${size}px`;
                 petal.style.left = `${Math.random() * 100}vw`;
@@ -297,15 +381,15 @@
             }
         }
 
-        // Create twinkling stars
+        // Create twinkling stars - fewer on mobile
         function createStars() {
-            const starCount = 50;
+            const starCount = window.innerWidth < 768 ? 20 : 50;
             for (let i = 0; i < starCount; i++) {
                 const star = document.createElement('div');
                 star.classList.add('star');
                 
                 // Random properties
-                const size = Math.random() * 5 + 2;
+                const size = Math.random() * (window.innerWidth < 768 ? 3 : 5) + 1;
                 star.style.width = `${size}px`;
                 star.style.height = `${size}px`;
                 star.style.left = `${Math.random() * 100}vw`;
@@ -316,19 +400,58 @@
             }
         }
 
-        // Rose Button Effect
-        document.getElementById('roseBtn').addEventListener('click', function() {
+        // Touch/click handler for mobile and desktop
+        function handleInteraction(e) {
+            // For touch events, get the first touch point
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            
+            if (!clientX || !clientY) return;
+            
+            if (Math.random() > 0.7) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤';
+                heart.style.position = 'absolute';
+                heart.style.left = `${clientX}px`;
+                heart.style.top = `${clientY}px`;
+                heart.style.fontSize = `${Math.random() * (window.innerWidth < 768 ? 15 : 20) + 8}px`;
+                heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1';
+                heart.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`;
+                heart.style.opacity = '0.7';
+                
+                document.body.appendChild(heart);
+                
+                // Fade out and remove
+                setTimeout(() => {
+                    heart.style.transition = 'all 1s ease';
+                    heart.style.opacity = '0';
+                    heart.style.transform = `translate(-50%, -100%) rotate(${Math.random() * 360}deg)`;
+                    
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 1000);
+                }, 100);
+            }
+        }
+
+        // Rose Button Effect - works for both touch and click
+        document.getElementById('roseBtn').addEventListener('click', function(e) {
             // Create rose petals explosion
-            for (let i = 0; i < 50; i++) {
+            const interactionX = e.clientX || window.innerWidth/2;
+            const interactionY = e.clientY || window.innerHeight/2;
+            
+            for (let i = 0; i < (window.innerWidth < 768 ? 30 : 50); i++) {
                 setTimeout(() => {
                     const petal = document.createElement('div');
                     petal.classList.add('petal');
                     
-                    const size = Math.random() * 25 + 15;
+                    const size = Math.random() * (window.innerWidth < 768 ? 15 : 25) + 8;
                     petal.style.width = `${size}px`;
                     petal.style.height = `${size}px`;
-                    petal.style.left = `${event.clientX}px`;
-                    petal.style.top = `${event.clientY}px`;
+                    petal.style.left = `${interactionX}px`;
+                    petal.style.top = `${interactionY}px`;
                     petal.style.animation = `fall ${Math.random() * 5 + 5}s linear forwards`;
                     petal.style.opacity = Math.random() * 0.7 + 0.3;
                     
@@ -345,21 +468,23 @@
             alert("🌹 A thousand roses for the most beautiful girl in the world! 🌹");
         });
 
-        // Firework Button Effect
+        // Firework Button Effect - mobile compatible
         document.getElementById('fireworkBtn').addEventListener('click', function(e) {
             // Create firework explosion
             const colors = ['#ff3366', '#ff758c', '#ffb3d9', '#ff66b3', '#ff0066'];
+            const interactionX = e.clientX || window.innerWidth/2;
+            const interactionY = e.clientY || window.innerHeight/2;
             
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < (window.innerWidth < 768 ? 50 : 100); i++) {
                 setTimeout(() => {
                     const particle = document.createElement('div');
                     particle.classList.add('particle');
                     
-                    const size = Math.random() * 8 + 2;
+                    const size = Math.random() * (window.innerWidth < 768 ? 5 : 8) + 2;
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
-                    particle.style.left = `${e.clientX}px`;
-                    particle.style.top = `${e.clientY}px`;
+                    particle.style.left = `${interactionX}px`;
+                    particle.style.top = `${interactionY}px`;
                     particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
                     
                     // Random direction
@@ -368,8 +493,8 @@
                     const x = Math.cos(angle) * velocity;
                     const y = Math.sin(angle) * velocity;
                     
-                    let posX = e.clientX;
-                    let posY = e.clientY;
+                    let posX = interactionX;
+                    let posY = interactionY;
                     let opacity = 1;
                     
                     const animate = () => {
@@ -405,19 +530,22 @@
 
         surpriseBtn.addEventListener('click', function() {
             surprise.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when surprise is active
         });
 
         yesBtn.addEventListener('click', function() {
             surprise.classList.remove('active');
-            // Create heart rain
-            for (let i = 0; i < 200; i++) {
+            document.body.style.overflow = ''; // Re-enable scrolling
+            
+            // Create heart rain - fewer on mobile
+            for (let i = 0; i < (window.innerWidth < 768 ? 100 : 200); i++) {
                 setTimeout(() => {
                     const heart = document.createElement('div');
                     heart.innerHTML = '❤';
                     heart.style.position = 'absolute';
                     heart.style.left = `${Math.random() * 100}vw`;
                     heart.style.top = `-50px`;
-                    heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+                    heart.style.fontSize = `${Math.random() * (window.innerWidth < 768 ? 20 : 30) + 15}px`;
                     heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
                     heart.style.animation = `fall ${Math.random() * 5 + 3}s linear forwards`;
                     heart.style.zIndex = '100';
@@ -434,14 +562,34 @@
         });
 
         noBtn.addEventListener('mouseover', function() {
-            // Make the "No" button run away
-            const btn = this;
-            const maxX = window.innerWidth - btn.offsetWidth;
-            const maxY = window.innerHeight - btn.offsetHeight;
-            
-            btn.style.position = 'absolute';
-            btn.style.left = `${Math.random() * maxX}px`;
-            btn.style.top = `${Math.random() * maxY}px`;
+            if (window.innerWidth >= 768) { // Only run away on desktop
+                const btn = this;
+                const maxX = window.innerWidth - btn.offsetWidth;
+                const maxY = window.innerHeight - btn.offsetHeight;
+                
+                btn.style.position = 'absolute';
+                btn.style.left = `${Math.random() * maxX}px`;
+                btn.style.top = `${Math.random() * maxY}px`;
+            }
+        });
+
+        // Touch event for mobile to make "No" button move
+        let touchStartTime;
+        noBtn.addEventListener('touchstart', function() {
+            touchStartTime = Date.now();
+        });
+
+        noBtn.addEventListener('touchend', function(e) {
+            if (Date.now() - touchStartTime < 200) { // Short tap
+                const btn = this;
+                const maxX = window.innerWidth - btn.offsetWidth;
+                const maxY = window.innerHeight - btn.offsetHeight;
+                
+                btn.style.position = 'absolute';
+                btn.style.left = `${Math.random() * maxX}px`;
+                btn.style.top = `${Math.random() * maxY}px`;
+                e.preventDefault(); // Prevent click event
+            }
         });
 
         // Initialize effects
@@ -449,36 +597,15 @@
             createPetals();
             createStars();
             
-            // Make hearts follow mouse
-            document.addEventListener('mousemove', function(e) {
-                if (Math.random() > 0.7) {
-                    const heart = document.createElement('div');
-                    heart.innerHTML = '❤';
-                    heart.style.position = 'absolute';
-                    heart.style.left = `${e.clientX}px`;
-                    heart.style.top = `${e.clientY}px`;
-                    heart.style.fontSize = `${Math.random() * 20 + 10}px`;
-                    heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 70%)`;
-                    heart.style.pointerEvents = 'none';
-                    heart.style.zIndex = '1';
-                    heart.style.transform = `translate(-50%, -50%) rotate(${Math.random() * 360}deg)`;
-                    heart.style.opacity = '0.7';
-                    
-                    document.body.appendChild(heart);
-                    
-                    // Fade out and remove
-                    setTimeout(() => {
-                        heart.style.transition = 'all 1s ease';
-                        heart.style.opacity = '0';
-                        heart.style.transform = `translate(-50%, -100%) rotate(${Math.random() * 360}deg)`;
-                        
-                        setTimeout(() => {
-                            heart.remove();
-                        }, 1000);
-                    }, 100);
-                }
-            });
+            // Set up interaction handlers for both mouse and touch
+            document.addEventListener('mousemove', handleInteraction);
+            document.addEventListener('touchmove', handleInteraction);
         };
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            // You could add logic to adjust elements on resize if needed
+        });
     </script>
 </body>
 </html>
